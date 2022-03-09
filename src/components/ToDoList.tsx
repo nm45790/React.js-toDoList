@@ -14,18 +14,18 @@ const Notice = styled.h2`
 font-size:24px;
 `;
 interface ICategory {
-    newCategory: string;
+    customCategory: string;
 }
 
 function ToDoList() {
     const { handleSubmit, register, setValue } = useForm<ICategory>();
-    const handleCategoryAdd = ({ newCategory }: ICategory) => {
+    const handleCategoryAdd = ({ customCategory }: ICategory) => {
         const categorySelector = document.querySelector("select");
-        const newCategoryOpt = document.createElement("option");
-        newCategoryOpt.value = newCategory;
-        newCategoryOpt.innerHTML = newCategory;
-        categorySelector?.appendChild(newCategoryOpt);
-        setValue("newCategory", "");
+        const customCategoryOption = document.createElement("option");
+        customCategoryOption.value = customCategory;
+        customCategoryOption.innerHTML = customCategory;
+        categorySelector?.appendChild(customCategoryOption);
+        setValue("customCategory", "");
     };
     const toDos = useRecoilValue(toDoSelector);
     const [category, setCategory] = useRecoilState(categoryState);
@@ -43,7 +43,7 @@ function ToDoList() {
                 <option value={"DONE"}>Done</option>
             </select>
             <form onSubmit={handleSubmit(handleCategoryAdd)}>
-                <input {...register("newCategory")} placeholder="add your category" />
+                <input {...register("customCategory")} placeholder="add your category" />
                 <button>Add</button>
             </form>
             <hr />
